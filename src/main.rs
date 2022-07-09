@@ -1,7 +1,7 @@
 fn main() {
     println!("Hello, world!");
     string_literal_copy();
-    sting_copy();
+    sting_shallow_copy();
 }
 
 // string literals, easy copy
@@ -18,7 +18,7 @@ fn string_literal_copy() {
 
 // String , ownership managed copy
 
-fn sting_copy() {
+fn sting_shallow_copy() {
     // :: for namespacing - request memory allocator for space in the heap
     // A String is made up of 3 parts (that are stored on the stack)
     // 1. A pointer to the memory on the heap: that holds the contents of the string
