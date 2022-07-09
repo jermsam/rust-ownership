@@ -111,7 +111,5 @@ fn get_length_with_ref_arg(arg: &String) ->  i32 { // arg is a reference to a St
 fn mutable_references( arg: &mut String) {
     // push pushes char push_str pushes str
     arg.push_str(", says hi!");
-    let mut y = String::from(arg);
-    y.push_str("Mutability on!!!");
     println!("Strings and references can be mutable. Primitives like string literals are not")
 }
