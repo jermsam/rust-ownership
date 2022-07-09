@@ -16,8 +16,16 @@ fn main() {
     let y = String::from("Sam"); // y comes into scope
     take_ownership(y); // y moves into take_ownership
     // y is no longer valid here.
+    let x = give_ownership(); // y takes ownership of give_ownership's return value
+    let y = take_and_give_back(x); // x is moved into takes_and_gives_back,  which also moves its return value into y
+    println!("y = {} is what is valid here", y);
 
-    let _y = give_ownership(); // y takes ownership of give_ownership's return value
+    let z = get_length(y); //get_length takes ownership of y, gets its length and return both as a tuple that it moves into z
+    // y is invalid here
+    println!("Length of {} is {}", z.0, z.1);
+    let length = get_length_with_Ref_arg(&(z.0)); // fn uses value at Z but never takes ownership of it
+    // thus tuple Z is still valid here also fn moves its return value to length
+    println!("Length of {} is {}", z.0,length); // both length and z are valid here
 }
 
 // string literals, easy copy
@@ -54,7 +62,7 @@ fn string_deep_copy() {
     let x = String::from("Sam"); // x comes into scope
     let y = x.clone(); // y enters into scope ... make a copy of the value in x and bind it to y
    // x is not moved into y hence still valid
-    println!("Expensive deep clone x = {} and y = {}.", x,y)
+    println!("Expensive deep clone x = {} and y = {}.", x,y);
 } // drop is called, x and y go out of scope and both copies of content are dropped the stack
 
 // FN and ownership
@@ -71,3 +79,27 @@ fn give_ownership() -> String {
     let y = String::from("Sam"); // comes into scope
     y // return y
 } // y moves out of scope into whatever calls it;
+
+fn take_and_give_back (arg: String) -> String { // arg comes into scope
+  arg // a_string is returned and moves out to the calling function
+}
+
+// if we want a fn to take ownership of a value, use it and then return
+
+fn get_length(arg: String) -> (String, i32) {
+    let length: i32 = arg.len() as i32;
+    (arg, length)
+}
+
+/*
+A reference is like a pointer in that it’s an address
+we can follow to access the data stored at that address
+Unlike a pointer, a reference
+is guaranteed to point to a valid value of a particular type
+for the life of that reference.
+*/
+
+fn get_length_with_Ref_arg (arg: &String) ->  i32 {
+    let length: i32 = arg.len() as i32;
+    length
+}
