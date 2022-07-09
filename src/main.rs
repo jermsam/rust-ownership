@@ -16,6 +16,8 @@ fn main() {
     let y = String::from("Sam"); // y comes into scope
     take_ownership(y); // y moves into take_ownership
     // y is no longer valid here.
+
+    let y = give_ownership(); // y takes ownership of give_ownership's return value
 }
 
 // string literals, easy copy
@@ -64,3 +66,8 @@ fn make_copy (x: &str){ // comes into scope
 fn take_ownership (y: String) { // comes into scope
     println!("{} is a String", y);
 } // y gets out of scope and drop is called and the backing memory is cleared
+
+fn give_ownership() -> String {
+    let y = String::from("Sam"); // comes into scope
+    y; // return y
+} // y moves out of scope into whatever calls it;
