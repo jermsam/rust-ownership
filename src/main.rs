@@ -21,7 +21,7 @@ fn string_literal_copy() { // x and y variables here implement the Copy trait
     println!("This is indeed what is happening, \
     because integers are simple values with a known, \
     fixed size, and these two 5 values are pushed onto the stack.");
-} // drop is called, x and y go out of scope and both copies of content are popped off the stack
+} // x and y go out of scope and both copies of content are popped off the stack
 
 // String , ownership managed copy
 
@@ -39,11 +39,11 @@ fn sting_shallow_copy() {
     println!("y = {}  while x is invalid", y);
     println!("We say x moved to y to mean that at y = x; \
     the pointer, length and capacity for x were copied into y but not its content")
-} // drop is called, x and y go out of scope but memory is only cleared for y
+} // drop is called, x and y go out of scope but memory is only cleared for y since x is invalid
 
 fn string_deep_copy() {
     let x = String::from("Sam"); // x comes into scope
     let y = x.clone(); // y enters into scope ... make a copy of the value in x and bind it to y
     println!("Expensive deep clone x = {} and y = {}.", x,y)
-} // drop is called, x and y go out of scope and both copies of content are popped off the stack
+} // drop is called, x and y go out of scope and both copies of content are dropped the stack
 
