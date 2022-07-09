@@ -7,5 +7,5 @@ fn main() {
 
 fn string_literal_copy() {
     // double quote str literals, single quote chars
-    let _x = "Sam";
+    let x = "Sam";
 }
