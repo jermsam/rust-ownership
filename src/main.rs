@@ -26,6 +26,7 @@ fn main() {
     let length = get_length_with_ref_arg(&(z.0)); // fn uses value at Z but never takes ownership of it
     // thus tuple Z is still valid here also fn moves its return value to length
     println!("Length of {} is {}", z.0,length); // both length and z are valid here
+    println!("borrowing - use it but dont own it");
 }
 
 // string literals, easy copy
@@ -101,6 +102,6 @@ for the life of that reference.
 
 fn get_length_with_ref_arg(arg: &String) ->  i32 { // arg is a reference to a String
     let length: i32 = arg.len() as i32;
-    println!("We call the action of creating a reference borrowing");
+    println!("creating a reference without owning is called borrowing");
     length
 } // Here, arg goes out of scope. But because it does not have ownership of what it refers to, it is not dropped.
