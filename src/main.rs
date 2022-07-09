@@ -44,6 +44,7 @@ fn sting_shallow_copy() {
 fn string_deep_copy() {
     let x = String::from("Sam"); // x comes into scope
     let y = x.clone(); // y enters into scope ... make a copy of the value in x and bind it to y
+   // x is not moved into y hence still valid
     println!("Expensive deep clone x = {} and y = {}.", x,y)
 } // drop is called, x and y go out of scope and both copies of content are dropped the stack
 
