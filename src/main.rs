@@ -1,14 +1,17 @@
 fn main() {
     println!("Hello, world!");
+
+    /*
+    If a type implements the Copy trait, variables that use it do not move,
+     but rather are trivially copied, making them still valid after assignment to another variable.
+    */
     string_literal_copy();
+
     sting_shallow_copy();
+    string_deep_copy();
 }
 
 // string literals, easy copy
-/*
-If a type implements the Copy trait, variables that use it do not move,
- but rather are trivially copied, making them still valid after assignment to another variable.
-*/
 
 fn string_literal_copy() { // x and y variables here implement the Copy trait
     // double quote str literals, single quote chars, put underscore for unused vars
