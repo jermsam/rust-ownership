@@ -14,7 +14,7 @@ fn string_literal_copy() {
     println!("This is indeed what is happening, \
     because integers are simple values with a known, \
     fixed size, and these two 5 values are pushed onto the stack.");
-}
+} // drop is called, x and y go out of scope and both copies of 5 are popped off the stack
 
 // String , ownership managed copy
 
@@ -32,3 +32,4 @@ println!("y = {}  while x is invalid", y);
     println!("We say x moved to y to mean that at y = x; \
     the pointer, length and capacity for x were copied into y but not its content")
 } // drop is called, x and y go out of scope but memory is only cleared for y
+
