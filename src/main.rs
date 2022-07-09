@@ -1,6 +1,7 @@
 fn main() {
     println!("Hello, world!");
     string_literal_copy();
+    sting_copy();
 }
 
 // string literals, easy copy
@@ -14,3 +15,20 @@ fn string_literal_copy() {
     because integers are simple values with a known, \
     fixed size, and these two 5 values are pushed onto the stack.");
 }
+
+// String , ownership managed copy
+
+fn sting_copy() {
+    // :: for namespacing - request memory allocator for space in the heap
+    // A String is made up of 3 parts (that are stored on the stack)
+    // 1. A pointer to the memory on the heap: that holds the contents of the string
+    // 2. The Length - which is how much memory (in bytes) the contents of the string is currently holding
+    // 3. The Capacity - which is the total amount of memory the string has received from the memory allocator
+    let x = String::from("Sam"); //
+    let y = x; // x's pointer, length and capacity on the heap are copied but not its content on the heap
+    // x become invalid here to avoid a double free error (dropping allocated memory more than once)
+    // which can cause memory corruption that can potentially lead to security vulnerabilities
+println!("y = {}  while x is invalid", y);
+    println!("We say x moved to y to mean that at y = x; \
+    the pointer, length and capacity for x were copied into y but not its content")
+} // drop is called, x and y go out of scope but memory is only cleared for y
