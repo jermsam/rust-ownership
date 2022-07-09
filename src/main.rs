@@ -5,5 +5,6 @@ fn main() {
 // string literals, easy copy
 
 fn string_literal_copy() {
-    let x = 'Sam';
+    // double quote str literals, single quote chars
+    let x = "Sam";
 }
