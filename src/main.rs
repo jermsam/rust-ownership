@@ -23,7 +23,7 @@ fn main() {
     let z = get_length(y); //get_length takes ownership of y, gets its length and return both as a tuple that it moves into z
     // y is invalid here
     println!("Length of {} is {}", z.0, z.1);
-    let length = get_length_with_Ref_arg(&(z.0)); // fn uses value at Z but never takes ownership of it
+    let length = get_length_with_ref_arg(&(z.0)); // fn uses value at Z but never takes ownership of it
     // thus tuple Z is still valid here also fn moves its return value to length
     println!("Length of {} is {}", z.0,length); // both length and z are valid here
 }
@@ -99,7 +99,7 @@ is guaranteed to point to a valid value of a particular type
 for the life of that reference.
 */
 
-fn get_length_with_Ref_arg (arg: &String) ->  i32 {
+fn get_length_with_ref_arg(arg: &String) ->  i32 {
     let length: i32 = arg.len() as i32;
     length
 }
