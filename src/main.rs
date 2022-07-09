@@ -67,7 +67,7 @@ fn take_ownership (y: String) { // comes into scope
     println!("{} is a String", y);
 } // y gets out of scope and drop is called and the backing memory is cleared
 
-fn give_ownership() -> String {
+fn give_ownership() {
     let y = String::from("Sam"); // comes into scope
     y; // return y
 } // y moves out of scope into whatever calls it;
