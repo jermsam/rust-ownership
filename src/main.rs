@@ -9,6 +9,13 @@ fn main() {
 
     sting_shallow_copy();
     string_deep_copy();
+
+    let x = "Sam";  // x comes into scope
+    make_copy(x); // &str is Copy, so it's okay to still use x afterward
+    println!("{} is still valid", x);
+    let y = String::from("Sam"); // y comes into scope
+    take_ownership(y); // y moves into take_ownership
+    // y is no longer valid here.
 }
 
 // string literals, easy copy
@@ -48,3 +55,12 @@ fn string_deep_copy() {
     println!("Expensive deep clone x = {} and y = {}.", x,y)
 } // drop is called, x and y go out of scope and both copies of content are dropped the stack
 
+// FN and ownership
+
+fn make_copy (x: &str){ // comes into scope
+    println!("{} is a string literal", x);
+} // x gets out of scope and nothing happens
+
+fn take_ownership (y: String) { // comes into scope
+    println!("{} is a String", y);
+} // y gets out of scope and drop is called and the backing memory is cleared
