@@ -27,6 +27,8 @@ fn main() {
     // thus tuple Z is still valid here also fn moves its return value to length
     println!("Length of {} is {}", z.0,length); // both length and z are valid here
     println!("borrowing - use it but dont own it");
+    let mut s = String::from("Sam");
+    mutable_references(&mut s);
 }
 
 // string literals, easy copy
@@ -105,3 +107,11 @@ fn get_length_with_ref_arg(arg: &String) ->  i32 { // arg is a reference to a St
     println!("creating a reference without owning is called borrowing");
     length
 } // Here, arg goes out of scope. But because it does not have ownership of what it refers to, it is not dropped.
+
+fn mutable_references( arg: &mut String) {
+    // push pushes char push_str pushes str
+    arg.push_str(", says hi!");
+    let mut y = String::from(arg);
+    y.push_str("Mutability on!!!");
+    println!("Strings and references can be mutable. Primitives like string literals are not")
+}
