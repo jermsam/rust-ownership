@@ -99,7 +99,8 @@ is guaranteed to point to a valid value of a particular type
 for the life of that reference.
 */
 
-fn get_length_with_ref_arg(arg: &String) ->  i32 {
+fn get_length_with_ref_arg(arg: &String) ->  i32 { // arg is a reference to a String
     let length: i32 = arg.len() as i32;
+    println!("We call the action of creating a reference borrowing");
     length
-}
+} // Here, arg goes out of scope. But because it does not have ownership of what it refers to, it is not dropped.
