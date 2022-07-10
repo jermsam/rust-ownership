@@ -30,6 +30,11 @@ fn main() {
     let mut s = String::from("Sam");
     mutable_references(&mut s);
     reference_rules();
+    // let a = dangling_reference();
+    println!("Borrowing rules");
+    println!("1. At any one time scope  can have only one mutable reference to some content or countless immutable ones");
+    println!("2. The reference must always be valid - no dangling refs");
+
 }
 
 // string literals, easy copy
@@ -151,3 +156,11 @@ fn reference_rules () {
     before the end of the scope is called Non-Lexical Lifetimes (NLL for short),
     */
 }
+
+// // a reference that references a location in memory that may have been given to someone
+// fn dangling_reference () -> & String{ // needs a lifetime operator like static but besides it returns a ref
+//     let s = String::from("hello");
+//     &s
+// } // s gets out of scope and drop is called to clear banked memory on heap
+// // thus returned reference for s will be pointing to an invalid value
+
