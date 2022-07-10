@@ -29,6 +29,7 @@ fn main() {
     println!("borrowing - use it but dont own it");
     let mut s = String::from("Sam");
     mutable_references(&mut s);
+    reference_rules();
 }
 
 // string literals, easy copy
