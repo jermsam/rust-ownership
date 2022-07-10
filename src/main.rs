@@ -113,3 +113,40 @@ fn mutable_references( arg: &mut String) {
     arg.push_str(", says hi!");
     println!("Strings and references can be mutable. Primitives like string literals are not")
 }
+
+/*
+Users of an immutable reference don’t expect the value to suddenly change out from under them!
+ However, multiple immutable references are allowed because no one who is just reading the data
+ has the ability to affect anyone else’s reading of the data.
+*/
+fn reference_rules () {
+    let mut s = String::from("hello");
+
+    // {
+    //     let r1 = &mut s; // you cant have another mutable reference here
+    // } // r1 goes out of scope here, so we can make a new reference with no problems.
+    //
+    // let r2 = &mut s;
+    // println!("{} can be used here", r2)
+
+    // let r1 = &s; // no problem - read only borrowing
+    // let r2 = &s; // no problem - read only borrowing
+    // let r3 = &mut s; // BIG PROBLEM - writable borrowing, c'mon you can't mutate s b4 its been used
+    // println!("{}, {}, and {}", r1, r2, r3);
+
+    /*
+    Note that a reference’s scope starts from where it is introduced
+    and continues through the last time that reference is used.
+    */
+    let r1 = &s; // no problem - read 0nly
+    let r2 = &s; // no problem - read only
+    println!("{} and {}", r1, r2); // - used so &r1 and &r2 go out of scope
+    // variables r1 and r2 will not be used after this point
+
+    let r3 = &mut s; // no problem - you can borrow it again as writable
+    println!("{}", r3);
+    /*
+    The ability of the compiler to tell that a reference is no longer being used at a point
+    before the end of the scope is called Non-Lexical Lifetimes (NLL for short),
+    */
+}
